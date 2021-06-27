@@ -16,6 +16,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule }from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -41,6 +42,7 @@ import { UpdateComponent } from './login/update/update.component';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
