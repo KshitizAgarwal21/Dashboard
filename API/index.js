@@ -18,13 +18,13 @@ app.listen(port, () => {
 });
 
 app.post("/api/registeruser", (req, res) => {
-    const find = REGISTER_SCHEMA.findOne({ Email: req.body.Email }, async (err, searchResult) => {
+    const find = REGISTER_SCHEMA.findOne({ Email: req.body.Email }, (err, searchResult) => {
         if (err) console.log(err);
         if (!searchResult) {
             const user = new REGISTER_SCHEMA(req.body);
             console.log(user);
             try {
-                const result = await user.save();
+                const result = user.save();
                 if (result) res.status(200).send({ msg: "Registration successful" });
             }
             catch (e) {
@@ -33,7 +33,7 @@ app.post("/api/registeruser", (req, res) => {
             }
         }
         else {
-            res.status(200).send({ msg: "Already exists" });
+            res.status(400).send({ msg: "Email already exists" });
         }
     })
 
@@ -52,6 +52,7 @@ app.post("/api/login", async (req, res) => {
                         Email: result.Email,
                         uid: result._id
                     }
+
                     var token = jwt.sign(tokenBody, "mysalt");
                     console.log(token);
                     res.status(200).send({ token: token });

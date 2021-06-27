@@ -65,18 +65,19 @@ export class LoginComponent implements OnInit {
         };
         this.authService.register(requiredForm).subscribe(res=>{
           console.log(res.msg);
-        if(res.msg==="Registration successful")
+        if(res!=null)
         {
           this._snackBar.openFromComponent(UpdateComponent, {
             duration: this.durationInSeconds * 1000,
           });
         }
-        else if(res.msg === "Already exists")
-        {
-          alert("User already exists");
-        }
+        
 
-        })
+        }, (err)=>{
+          console.log(err);
+          alert(err.error.msg);
+
+        });
         
 
       }
@@ -111,7 +112,8 @@ export class LoginComponent implements OnInit {
       
     },(err)=>{
 
-      console.log(err.error.msg)
+      console.log(err.error.msg);
+      alert(err.error.msg);
     });
     
   }
