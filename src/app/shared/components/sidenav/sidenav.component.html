@@ -1,0 +1,46 @@
+<mat-nav-list>
+  <div class="profile-card" *ngIf="authCheck === 1">
+    <img src="{{ userDP }}" alt="dp" />
+    <div class="header">
+      <h2>{{ userName }}</h2>
+      <h4>{{ userEmail }}</h4>
+    </div>
+  </div>
+  <div class="profile-card" *ngIf="authCheck === 0">
+    <div class="header">
+      <a routerLink="/login">
+        <h3>
+          <span><mat-icon>login</mat-icon></span
+          >Login/Sign-up
+        </h3></a
+      >
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <h3 matSubheader>Pages</h3>
+  <a
+    mat-list-item
+    style="font-size: small"
+    routerLinkActive="list-item-active"
+    routerLink="/"
+    ><span><mat-icon>dashboard</mat-icon></span
+    >Dashboard</a
+  >
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/database"
+    ><span><mat-icon>table</mat-icon></span
+    >Database</a
+  >
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/post"
+    ><span><mat-icon>addchart</mat-icon></span
+    >Add stats</a
+  >
+
+  <mat-divider></mat-divider>
+  <h3 matSubheader>Tools</h3>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/aboutus"
+    ><mat-icon>contact_page</mat-icon>About us</a
+  >
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/settings"
+    ><mat-icon>settings</mat-icon>Settings</a
+  >
+</mat-nav-list>
