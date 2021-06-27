@@ -16,33 +16,6 @@ const schema = mongoose.Schema({
     },
     image: {
         type: String,
-    },
-    ig: {
-        day: {
-            type: String,
-        },
-        time: {
-            type: Number
-        }
-
-    },
-    yt: {
-        day: {
-            type: String,
-        },
-        time: {
-            type: Number
-        }
-
-    },
-    wa: {
-        day: {
-            type: String,
-        },
-        time: {
-            type: Number
-        }
-
     }
 });
 const REGISTER_SCHEMA = mongoose.model("USER_DATA", schema);
