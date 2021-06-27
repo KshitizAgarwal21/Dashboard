@@ -117,7 +117,6 @@ export class LoginComponent implements OnInit {
     });
     
   }
-  //abe meet pe link do mobile ki battery gyi audio meet  audio meet k liye earphone nhi h charge kr lo fir batana
 }
  
 
