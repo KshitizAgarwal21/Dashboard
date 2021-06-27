@@ -18,7 +18,7 @@ app.listen(port, () => {
 });
 
 app.post("/api/registeruser", (req, res) => {
-    const find = REGISTER_SCHEMA.findOne({ Email: req.body.Email }, (err, searchResult) => {
+    const find = REGISTER_SCHEMA.findOne({ Email: req.body.Email.toLowerCase() }, (err, searchResult) => {
         if (err) console.log(err);
         if (!searchResult) {
             const user = new REGISTER_SCHEMA(req.body);
@@ -41,7 +41,7 @@ app.post("/api/registeruser", (req, res) => {
 
 app.post("/api/login", async (req, res) => {
     console.log(req.headers.authorization);
-    const search = await REGISTER_SCHEMA.findOne({ Email: req.body.Email }, (err, result) => {
+    const search = await REGISTER_SCHEMA.findOne({ Email: req.body.Email.toLowerCase() }, (err, result) => {
         if (err) {
             console.log(err);
         }

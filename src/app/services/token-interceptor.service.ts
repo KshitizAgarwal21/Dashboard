@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    const userToken = 'mysalt';
+    const userToken = localStorage.getItem('token');
     const modifiedReq = req.clone({ 
       headers: req.headers.set('Authorization', `${userToken}`),
     });

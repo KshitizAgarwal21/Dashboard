@@ -20,7 +20,7 @@ export class AreaComponent implements OnInit {
         type: 'areaspline'
     },
     title: {
-        text: 'Average fruit consumption during one week'
+        text: 'Average screen on time per app during one week'
     },
     legend: {
         layout: 'vertical',
@@ -50,12 +50,12 @@ export class AreaComponent implements OnInit {
     },
     yAxis: {
         title: {
-            text: 'Fruit units'
+            text: 'Time (minutes)'
         }
     },
     tooltip: {
         shared: true,
-        valueSuffix: ' units'
+        valueSuffix: ' minutes'
     },
     credits: {
         enabled: false
@@ -69,12 +69,16 @@ export class AreaComponent implements OnInit {
         }
     },
     series: [{
-        name: 'John',
-        data: [3, 4, 3, 5, 4, 10, 12]
+        name: 'WhatsApp',
+        data: [20, 25, 22, 30, 60, 15, 45]
     }, {
-        name: 'Jane',
-        data: [1, 3, 4, 3, 3, 5, 4]
-    }]
+        name: 'Instagram',
+        data: [50, 60, 40, 30, 70, 120, 100]
+    },
+{
+    name: 'YouTube',
+    data: [80, 100, 40, 25, 30, 120, 90 ]
+}]
     };
     HC_stock(Highcharts);
     setTimeout(()=>{
@@ -89,7 +93,7 @@ export class AreaComponent implements OnInit {
         type: 'areaspline'
     },
     title: {
-        text: 'Average fruit consumption during one week'
+        text: 'Average screen on time per app during one week'
     },
     legend: {
         layout: 'vertical',
@@ -119,12 +123,13 @@ export class AreaComponent implements OnInit {
     },
     yAxis: {
         title: {
-            text: 'Fruit units'
-        }
+            text: 'Time (minutes)'
+        },
+        
     },
     tooltip: {
         shared: true,
-        valueSuffix: ' units'
+        valueSuffix: ' minutes'
     },
     credits: {
         enabled: false
@@ -138,12 +143,16 @@ export class AreaComponent implements OnInit {
         }
     },
     series: [{
-        name: 'JohnJcob',
-        data: [3, 4, 3, 5, 4, 10, 12]
+        name: 'WhatsApp',
+        data: [20, 25, 22, 30, 60, 15, 45]
     }, {
-        name: 'JaneSierra',
-        data: [1, 3, 4, 3, 3, 5, 4]
-    }]
+        name: 'Instagram',
+        data: [50, 60, 40, 30, 70, 120, 100]
+    },
+{
+    name: 'YouTube',
+    data: [80, 100, 40, 25, 30, 120, 90 ]
+}]
     };
     HC_stock(Highcharts);
     setTimeout(()=>{
