@@ -40,6 +40,7 @@ app.post("/api/registeruser", (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
+    console.log(req.headers.authorization);
     const search = await REGISTER_SCHEMA.findOne({ Email: req.body.Email }, (err, result) => {
         if (err) {
             console.log(err);

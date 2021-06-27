@@ -5,7 +5,6 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateComponent } from './update/update.component';
-import { HttpResponse } from '@angular/common/http';
 const jwtHelper = new JwtHelperService();
 
 @Component({
