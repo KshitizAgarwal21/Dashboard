@@ -1,9 +1,14 @@
 <mat-card>
   <h2>Please input your screen on time for below Apps</h2>
   <mat-divider></mat-divider>
+  <br />
   <form style="width: 100%">
-    <label>Select Day of Week : </label>
+    <label
+      >Day:&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
+    >
     <mat-form-field appearance="fill">
+      <mat-label>Select Day</mat-label>
       <mat-select>
         <mat-option value="Monday">Monday</mat-option>
         <mat-option value="Tuesday">Tuesday</mat-option>
@@ -18,19 +23,19 @@
     <label>Instagram: &nbsp;</label>
     <mat-form-field appearance="fill">
       <mat-label>Duration in minutes</mat-label>
-      <input type="text" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" />
     </mat-form-field>
     <br />
     <label>YouTube: &nbsp;&nbsp;&nbsp;</label>
     <mat-form-field appearance="fill">
       <mat-label>Duration in minutes</mat-label>
-      <input type="text" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" />
     </mat-form-field>
     <br />
     <label>WhatsApp: </label>
     <mat-form-field appearance="fill">
       <mat-label>Duration in minutes</mat-label>
-      <input type="text" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" />
     </mat-form-field>
     <br />
     <button type="submit" mat-raised-button color="primary">Submit</button>

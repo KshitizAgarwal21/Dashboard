@@ -40,27 +40,28 @@ app.post("/api/registeruser", (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-    const search = await REGISTER_SCHEMA.findOne({ Email: req.body.email }, (err, result) => {
+    const search = await REGISTER_SCHEMA.findOne({ Email: req.body.Email }, (err, result) => {
         if (err) {
             console.log(err);
         }
         else {
             if (result != null) {
-                if (req.body.password == result.Password) {
+                if (req.body.Password === result.Password) {
                     var tokenBody = {
                         Name: result.Name,
-                        Email: result.Email
+                        Email: result.Email,
+                        uid: result._id
                     }
                     var token = jwt.sign(tokenBody, "mysalt");
                     console.log(token);
                     res.status(200).send({ token: token });
                 }
                 else {
-                    res.status(200).send({ msg: "Invalid credentials" });
+                    res.status(400).send({ msg: "Invalid credentials" });
                 }
             }
             else {
-                res.status(200).send({ msg: "Email not found" })
+                res.status(400).send({ msg: "Email not found" })
             }
         }
     });

@@ -5,6 +5,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateComponent } from './update/update.component';
+import { HttpResponse } from '@angular/common/http';
 const jwtHelper = new JwtHelperService();
 
 @Component({
@@ -100,26 +101,22 @@ export class LoginComponent implements OnInit {
     {
     var email=this.loginForm.value.Email;
     var password=this.loginForm.value.Password; 
-    this.authService.login({email:email, password: password, phone: 9918}).subscribe(res=>{
-      if(res.msg==="Invalid credentials")
-      {
-        alert("Galat baat");
-      }
-      else if(res.msg==="Email not found")
-      {
-        alert("Please register first");
-      }
-      else{
-      console.log(res.token);
-      console.log(jwtHelper.decodeToken(res.token).Name);
-      localStorage.setItem('token', res.token);
-      this.router.navigate(['/'],{relativeTo: this.route});
-      }
+    this.authService.login(this.loginForm.value).subscribe(res=>{
+        if(res!=null){
+          console.log(res.token);
+          console.log(jwtHelper.decodeToken(res.token).Name);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/'],{relativeTo: this.route});
+         }
       
+    },(err)=>{
+
+      console.log(err.error.msg)
     });
     
   }
-  
+  //abe meet pe link do mobile ki battery gyi audio meet  audio meet k liye earphone nhi h charge kr lo fir batana
 }
+ 
 
 }
