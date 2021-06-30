@@ -107,8 +107,23 @@ app.post('/api/addusage', async (req, res) => {
 app.get('/api/getdata', async (req, res) => {
     const user = jwt.verify(req.headers.authorization, "mysalt");
     console.log(user.uid);
-
-    const result = await USAGE_SCHEMA.find({ uid: user.uid });
-    console.log(result);
-
+    const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
+    console.log(result.usage);
+    const sorter = {
+        // "sunday": 0, // << if sunday is first day of week
+        "monday": 1,
+        "tuesday": 2,
+        "wednesday": 3,
+        "thursday": 4,
+        "friday": 5,
+        "saturday": 6,
+        "sunday": 7
+    }
+    result.usage.sort(function sortByDay(a, b) {
+        let day1 = a.day.toLowerCase();
+        let day2 = b.day.toLowerCase();
+        return sorter[day1] - sorter[day2];
+    });
+    console.log(result.usage);
+    res.status(200).send({ result: result });
 })

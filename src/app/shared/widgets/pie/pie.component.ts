@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import HC_exporting from 'highcharts/modules/exporting';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+
+let days: Array<String>=[];
+let sumWhatsapp: number;
+let sumYoutube:  number;
+let sumInstagram: number;
 @Component({
   selector: 'app-widget-pie',
   templateUrl: './pie.component.html',
@@ -9,74 +14,128 @@ import HC_exporting from 'highcharts/modules/exporting';
 export class PieComponent implements OnInit {
 Highcharts = Highcharts;
 chartOptions: any;
-  constructor() { }
+  constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
-this.chartOptions={chart: {
-  plotBackgroundColor: null,
-  plotBorderWidth: null,
-  plotShadow: false,
-  type: 'pie'
-},
-title: {
-  text: 'Random Data'
-},
-tooltip: {
-  pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-},
-accessibility: {
-  point: {
-      valueSuffix: '%'
+    days=[];
+    sumYoutube=0;
+    sumWhatsapp = 0;
+    sumInstagram = 0;
+    if(localStorage.getItem('token')!=null)
+    {
+        this.authService.getData().subscribe(res=>{
+    
+            res.result.usage.forEach((element:any) => {
+                
+                days.push(element.day)
+                sumWhatsapp+= element.whatsapp;
+                sumYoutube+= element.youtube;
+                sumInstagram+= element.insta;
+            });
+            if(res!=null){
+              this.chartOptions={
+                chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+              },
+              title: {
+                text: 'Screen On time for user'
+              },
+              tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+              },
+              accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+              },
+              credits:{
+              
+              enabled: false
+              },
+              plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+              },
+              series: [{
+                name: 'Usage',
+                colorByPoint: true,
+                data: [{
+                    name: 'WhatsApp',
+                    y: sumWhatsapp,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Instagram',
+                    y: sumInstagram
+                }, {
+                    name: 'YouTube',
+                    y: sumYoutube
+                }]
+              }]
+              }
+            }
+              
+          }) 
   }
-},
-credits:{
-
-enabled: false
-},
-plotOptions: {
-  pie: {
-      allowPointSelect: true,
-      cursor: 'pointer',
-      dataLabels: {
-          enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+  else{
+    this.chartOptions={
+      chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Screen On time for user'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+      point: {
+          valueSuffix: '%'
       }
+    },
+    credits:{
+    
+    enabled: false
+    },
+    plotOptions: {
+      pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          }
+      }
+    },
+    series: [{
+      name: 'Usage',
+      colorByPoint: true,
+      data: [{
+          name: 'WhatsApp',
+          y: sumWhatsapp,
+          sliced: true,
+          selected: true
+      }, {
+          name: 'Instagram',
+          y: sumInstagram
+      }, {
+          name: 'YouTube',
+          y: sumYoutube
+      }]
+    }]
+    }
   }
-},
-series: [{
-  name: 'Brands',
-  colorByPoint: true,
-  data: [{
-      name: 'Chrome',
-      y: 61.41,
-      sliced: true,
-      selected: true
-  }, {
-      name: 'Internet Explorer',
-      y: 11.84
-  }, {
-      name: 'Firefox',
-      y: 10.85
-  }, {
-      name: 'Edge',
-      y: 4.67
-  }, {
-      name: 'Safari',
-      y: 4.18
-  }, {
-      name: 'Sogou Explorer',
-      y: 1.64
-  }, {
-      name: 'Opera',
-      y: 1.6
-  }, {
-      name: 'QQ',
-      y: 1.2
-  }, {
-      name: 'Other',
-      y: 2.61
-  }]
-}]}
   }
-
 }
