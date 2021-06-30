@@ -45,6 +45,9 @@ if(localStorage.getItem('token')!=null)
                 subtitle: {
                     text: ''
                 },
+                credits: {
+                    enabled: false
+                },
                 xAxis: {
                     categories: days,
                     crosshair: true
@@ -105,6 +108,9 @@ if(localStorage.getItem('token')!=null)
         },
         subtitle: {
             text: ''
+        },
+        credits: {
+            enabled: false
         },
         xAxis: {
             categories: days,

@@ -71,10 +71,10 @@ if(localStorage.getItem('token')!=null)
                   shared: true,
                   valueSuffix: ' minutes'
               },
-              credits: {
+              its: {
                   enabled: false
               },
-              exporting: {
+              expcredorting: {
                 enabled: true
               },
               plotOptions: {
