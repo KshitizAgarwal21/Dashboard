@@ -2,14 +2,14 @@
   <h2>Please input your screen on time for below Apps</h2>
   <mat-divider></mat-divider>
   <br />
-  <form style="width: 100%">
+  <form style="width: 100%" [formGroup]="usageForm" (ngSubmit)="addUsage()">
     <label
       >Day:&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
     >
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
       <mat-label>Select Day</mat-label>
-      <mat-select>
+      <mat-select formControlName="Day" required>
         <mat-option value="Monday">Monday</mat-option>
         <mat-option value="Tuesday">Tuesday</mat-option>
         <mat-option value="Wednesday">Wednesday</mat-option>
@@ -21,21 +21,21 @@
     </mat-form-field>
     <br />
     <label>Instagram: &nbsp;</label>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
       <mat-label>Duration in minutes</mat-label>
-      <input type="number" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" formControlName="Ig"/>
     </mat-form-field>
     <br />
     <label>YouTube: &nbsp;&nbsp;&nbsp;</label>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
       <mat-label>Duration in minutes</mat-label>
-      <input type="number" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" formControlName="Yt"/>
     </mat-form-field>
     <br />
     <label>WhatsApp: </label>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
       <mat-label>Duration in minutes</mat-label>
-      <input type="number" matInput style="width: 100%" />
+      <input type="number" matInput style="width: 100%" formControlName="Wa" />
     </mat-form-field>
     <br />
     <button type="submit" mat-raised-button color="primary">Submit</button>

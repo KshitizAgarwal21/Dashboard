@@ -5,13 +5,15 @@ const cors = require("cors");
 const port = 8080 || process.env.port;
 const mongoose = require("mongoose");
 const REGISTER_SCHEMA = require('./Schema/register_schema');
+const USAGE_SCHEMA = require('../API/Schema/usageSchema');
+const { useSerialIds } = require("highcharts");
 app.use(cors());
 app.use(express.json());
 var userData = {
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
     phone: 99181
 };
-mongoose.connect('mongodb://localhost:27017/dashboard', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/dashboard', { useNewUrlParser: true, useFindAndModify: false });
 app.listen(port, () => {
 
     console.log("Server up and running listening at " + port);
@@ -68,3 +70,45 @@ app.post("/api/login", async (req, res) => {
         }
     });
 });
+
+app.post('/api/addusage', async (req, res) => {
+
+    const { uid, day, insta, youtube, whatsapp } = req.body;
+    console.log(uid);
+    var data = {
+        uid: uid,
+        usage: { day, whatsapp, insta, youtube }
+    }
+    const result = await USAGE_SCHEMA.findOne({ uid: uid })
+    if (result == null) {
+        //const usage = result.usage.filter(item => item.day != day)
+        USAGE_SCHEMA(data).save();
+        res.status(200).send({ 'msg': "Data added for the user" });
+    }
+    else {
+        const dayResult = await USAGE_SCHEMA.findOne({ uid: uid, "usage.day": day })
+        if (dayResult == null) {
+            const addDay = await USAGE_SCHEMA.findOneAndUpdate({ uid: uid }, {
+                $push: {
+                    usage: { day: day, insta: insta, youtube: youtube, whatsapp: whatsapp },
+                }
+            })
+            res.status(200).send({ 'msg': "Data for new day added successfully" })
+        }
+        else {
+            const addDay = await USAGE_SCHEMA.findOneAndUpdate({ uid: uid, "usage.day": day }, {
+                $set: { "usage.$": { day: day, whatsapp: whatsapp, insta: insta, youtube: youtube } }
+            })
+            res.status(200).send({ 'msg': "Data for the day updated successfully" });
+        }
+    }
+})
+
+app.get('/api/getdata', async (req, res) => {
+    const user = jwt.verify(req.headers.authorization, "mysalt");
+    console.log(user.uid);
+
+    const result = await USAGE_SCHEMA.find({ uid: user.uid });
+    console.log(result);
+
+})

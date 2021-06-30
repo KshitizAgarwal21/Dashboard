@@ -16,4 +16,16 @@ export class AuthServiceService {
   {
     return this.http.post('http://localhost:8080/api/registeruser', data);
   }
+
+  addusage(data: any): Observable<any>{
+    return this.http.post("http://localhost:8080/api/addusage", data);
+  }
+
+  getData(): Observable<any>{
+
+    return this.http.get("http://localhost:8080/api/getdata");
+  }
+
+
+
 }

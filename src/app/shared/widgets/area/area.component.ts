@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_stock from 'highcharts/modules/stock';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-widget-area',
@@ -10,9 +11,15 @@ import HC_stock from 'highcharts/modules/stock';
 export class AreaComponent implements OnInit {
   Highcharts = Highcharts;
   chartOptions: any;
-  constructor() { }
+  constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
+
+    this.authService.getData().subscribe(res=>{
+
+    })
+
+    
     if(localStorage.getItem('token')!=null)
     {
     this.chartOptions={

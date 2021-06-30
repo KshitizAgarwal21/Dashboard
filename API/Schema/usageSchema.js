@@ -1,37 +1,17 @@
 const mongoose = require("mongoose");
 const usageschema = mongoose.Schema({
-    id: {
+
+    uid: {
         type: String,
+        default: "",
         required: true
     },
-    ig: [{
-        day: {
-            type: String,
-        },
-        duration: {
-            type: Number
-        }
-
-    }],
-    yt: [{
-        day: {
-            type: String,
-        },
-        duration: {
-            type: Number
-        }
-
-    }],
-    wa: [{
-        day: {
-            type: String,
-        },
-        duration: {
-            type: Number
-        }
-
-    }]
+    usage: {
+        type: Array,
+        default: [],
+        required: true
+    }
 });
 
-const USAGE_SCHEMA = mongoose.model(usage_data, usageschema);
+const USAGE_SCHEMA = mongoose.model("USAGE_DATA", usageschema);
 module.exports = USAGE_SCHEMA;
