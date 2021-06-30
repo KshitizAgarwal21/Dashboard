@@ -15,6 +15,14 @@ import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { TableComponent } from './widgets/table/table.component';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -23,19 +31,31 @@ import { PieComponent } from './widgets/pie/pie.component';
     SidenavComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    TableComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    MatInputModule,
     MatDividerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
     MatListModule,
     FlexLayoutModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatFormFieldModule,
+    FlexLayoutModule
   ],
   exports: [
     HeaderComponent,
@@ -43,6 +63,7 @@ import { PieComponent } from './widgets/pie/pie.component';
     SidenavComponent,
     AreaComponent,
     PieComponent,
+    TableComponent,
     CardComponent
   ]
 })
