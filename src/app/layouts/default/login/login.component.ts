@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
           Name: this.registrationForm.value.Name,
           Email: this.registrationForm.value.Email,
           Password : this.registrationForm.value.Password,
+          Image: "https://www.gstatic.com/images/branding/product/2x/avatar_square_blue_120dp.png"
         };
         this.authService.register(requiredForm).subscribe(res=>{
           console.log(res.msg);

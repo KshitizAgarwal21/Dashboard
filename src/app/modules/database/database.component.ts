@@ -7,7 +7,7 @@ export interface UserData {
   id: number;
   Name: string;
   Email: string;
-  image: string;
+  Image: string;
 }
 let temp: UserData[];
 
@@ -18,7 +18,7 @@ let temp: UserData[];
 })
 
 export class DatabaseComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['id', 'name', 'progress', 'photo'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator)

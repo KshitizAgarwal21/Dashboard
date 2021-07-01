@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenInterceptorService } from './token-interceptor.service';
 @Injectable({
@@ -30,6 +30,9 @@ export class AuthServiceService {
     return this.http.get('http://localhost:8080/api/getusers');
   }
 
-
-
-}
+  uploadFile(file:any): Observable<any>{
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.post("http://localhost:8080/api/upload", formData);
+  }
+  }

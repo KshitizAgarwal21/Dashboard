@@ -5,6 +5,7 @@ import { LoginComponent } from './layouts/default/login/login.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { DatabaseComponent } from './modules/database/database.component';
 import { PostsComponent } from './modules/posts/posts.component';
+import { UploadComponent } from './modules/upload/upload.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [{
 {
   path:'database',
   component: DatabaseComponent
+},
+{
+  path: 'changepic',
+  component: UploadComponent
 }]
 },
 {

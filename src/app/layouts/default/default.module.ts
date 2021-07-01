@@ -24,6 +24,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UpdateComponent } from './login/update/update.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UploadComponent } from 'src/app/modules/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { UpdateComponent } from './login/update/update.component';
     PostsComponent,
     LoginComponent,
     DatabaseComponent,
+    UploadComponent,
     UpdateComponent
   ],
   imports: [
@@ -43,6 +46,7 @@ import { UpdateComponent } from './login/update/update.component';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatDialogModule,
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,

@@ -9,10 +9,11 @@ const USAGE_SCHEMA = require('../API/Schema/usageSchema');
 const { useSerialIds } = require("highcharts");
 app.use(cors());
 app.use(express.json());
-var userData = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
-    phone: 99181
-};
+const uploadFile = require("../API/middleware/upload");
+// var userData = {
+//     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
+//     phone: 99181
+// };
 mongoose.connect('mongodb://localhost:27017/dashboard', { useNewUrlParser: true, useFindAndModify: false });
 app.listen(port, () => {
 
@@ -109,8 +110,8 @@ app.get('/api/getdata', async (req, res) => {
     const user = jwt.verify(req.headers.authorization, "mysalt");
 
     const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
+    //Start of Code block=> Code to sort the result array according to days of week
     const sorter = {
-        // "sunday": 0, // << if sunday is first day of week
         "monday": 1,
         "tuesday": 2,
         "wednesday": 3,
@@ -124,10 +125,34 @@ app.get('/api/getdata', async (req, res) => {
         let day2 = b.day.toLowerCase();
         return sorter[day1] - sorter[day2];
     });
+    // End of code block
     res.status(200).send({ result: result });
 })
 
 app.get('/api/getusers', async (req, res) => {
-    const result = await REGISTER_SCHEMA.find({}, { Name: 1, Email: 1, image: 1, _id: 0 });
+    const result = await REGISTER_SCHEMA.find({}, { Name: 1, Email: 1, Image: 1, _id: 0 });
     res.status(200).send({ 'data': result });
+})
+
+app.post('/api/upload', async (req, res, next) => {
+    try {
+        await uploadFile(req, res);
+
+        if (req.file == undefined) {
+            return res.status(400).send({ message: "Please upload a file!" });
+        }
+        const uid = jwt.verify(req.headers.authorization, "mysalt").uid;
+        REGISTER_SCHEMA.findOneAndUpdate({ _id: uid }, { $set: { Image: uid } }, (err, result) => {
+            console.log("image updated");
+        });
+        res.status(200).send({
+            message: "Uploaded the file successfully: " + req.file.originalname,
+        });
+    } catch (err) {
+        res.status(500).send({
+            message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+        });
+    }
+
+
 })

@@ -1,0 +1,9 @@
+<mat-card>
+  <h2>Please select file to upload</h2>
+  <form (ngSubmit)="upload()" enctype="multipart/form-data">
+    <input type="file" id="file" name="file" (change)="onChange($event)" />
+    <br />
+    <br />
+    <button mat-raised-button type="submit" color="primary">Upload</button>
+  </form>
+</mat-card>

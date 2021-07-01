@@ -30,9 +30,14 @@
     </ng-container>
 
     <!-- Fruit Column -->
-    <ng-container matColumnDef="fruit">
+    <ng-container matColumnDef="photo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Avatar</th>
-      <td mat-cell *matCellDef="let row">{{ row.image }}</td>
+      <td mat-cell *matCellDef="let row">
+        <img
+          [src]="row.Image"
+          style="border-radius: 50%; height: 40px; vertical-align: middle"
+        />
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

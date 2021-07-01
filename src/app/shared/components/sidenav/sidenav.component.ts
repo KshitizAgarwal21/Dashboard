@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 const jwtHelper = new JwtHelperService();
 @Component({
   selector: 'app-sidenav',
@@ -12,7 +14,7 @@ export class SidenavComponent implements OnInit {
   userName: any;
   userEmail: any;
   userDP: any;
-  constructor() { }
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('token')==null)
@@ -27,5 +29,9 @@ export class SidenavComponent implements OnInit {
       this.userEmail = jwtHelper.decodeToken(this.authToken).Email;
       this.userDP = jwtHelper.decodeToken(this.authToken).Image;
     }
+  }
+
+  openDialog(){
+    this.router.navigate(['/changepic'],{relativeTo: this.route});
   }
 }
