@@ -42,7 +42,7 @@ app.post("/api/registeruser", (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-    console.log(req.headers.authorization);
+
     const search = await REGISTER_SCHEMA.findOne({ Email: req.body.Email.toLowerCase() }, (err, result) => {
         if (err) {
             console.log(err);
@@ -53,11 +53,12 @@ app.post("/api/login", async (req, res) => {
                     var tokenBody = {
                         Name: result.Name,
                         Email: result.Email,
+                        Image: result.Image,
                         uid: result._id
                     }
 
                     var token = jwt.sign(tokenBody, "mysalt");
-                    console.log(token);
+
                     res.status(200).send({ token: token });
                 }
                 else {
@@ -106,9 +107,8 @@ app.post('/api/addusage', async (req, res) => {
 
 app.get('/api/getdata', async (req, res) => {
     const user = jwt.verify(req.headers.authorization, "mysalt");
-    console.log(user.uid);
+
     const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
-    console.log(result.usage);
     const sorter = {
         // "sunday": 0, // << if sunday is first day of week
         "monday": 1,
@@ -124,12 +124,10 @@ app.get('/api/getdata', async (req, res) => {
         let day2 = b.day.toLowerCase();
         return sorter[day1] - sorter[day2];
     });
-    console.log(result.usage);
     res.status(200).send({ result: result });
 })
 
 app.get('/api/getusers', async (req, res) => {
     const result = await REGISTER_SCHEMA.find({}, { Name: 1, Email: 1, image: 1, _id: 0 });
-    console.log(result);
     res.status(200).send({ 'data': result });
 })
