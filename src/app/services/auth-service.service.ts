@@ -25,6 +25,10 @@ export class AuthServiceService {
 
     return this.http.get("http://localhost:8080/api/getdata");
   }
+  getUsers(): Observable<any>{
+
+    return this.http.get('http://localhost:8080/api/getusers');
+  }
 
 
 

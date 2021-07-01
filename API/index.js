@@ -127,3 +127,9 @@ app.get('/api/getdata', async (req, res) => {
     console.log(result.usage);
     res.status(200).send({ result: result });
 })
+
+app.get('/api/getusers', async (req, res) => {
+    const result = await REGISTER_SCHEMA.find({}, { Name: 1, Email: 1, image: 1, _id: 0 });
+    console.log(result);
+    res.status(200).send({ 'data': result });
+})
