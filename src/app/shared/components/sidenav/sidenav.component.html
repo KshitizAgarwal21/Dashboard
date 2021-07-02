@@ -1,6 +1,11 @@
 <mat-nav-list>
   <div class="profile-card" *ngIf="authCheck === 1">
-    <img src="{{ userDP }}" alt="dp" (click)="openDialog()" />
+    <img
+      src="{{ userDP }}"
+      alt="dp"
+      (click)="openDialog()"
+      style="cursor: pointer"
+    />
     <div class="header">
       <h2>{{ userName }}</h2>
       <h4>{{ userEmail }}</h4>

@@ -92,7 +92,26 @@ if(localStorage.getItem('token')!=null)
           {
               name: 'YouTube',
               data: youtube
-          }]
+          },
+        ],
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    chart: {
+                        height: 300
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    navigator: {
+                        enabled: false
+                    }
+                }
+            }]
+        }
               };
               HC_stock(Highcharts);
               setTimeout(()=>{
@@ -159,10 +178,30 @@ if(localStorage.getItem('token')!=null)
           name: 'Instagram',
           data: [0,0,0,0,0,0,0],
       },
+      
   {
       name: 'YouTube',
       data: [0,0,0,0,0,0,0],
-  }]
+  },
+],
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            chart: {
+                height: 300
+            },
+            subtitle: {
+                text: null
+            },
+            navigator: {
+                enabled: false
+            }
+        }
+    }]
+}
       };
       HC_stock(Highcharts);
       setTimeout(()=>{

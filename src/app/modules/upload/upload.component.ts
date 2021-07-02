@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  constructor(private authService:AuthServiceService) { }
+  constructor(private authService:AuthServiceService, private route: ActivatedRoute, private router: Router) { }
   selectedFiles?: FileList;
   currentFile?: File;
   //file: File |null=null;
@@ -25,6 +26,10 @@ export class UploadComponent implements OnInit {
         this.currentFile = file;
     this.authService.uploadFile(this.currentFile).subscribe((event: any) => {
       console.log(event.message);
+setTimeout(() => {
+  this.router.navigate(['/'],{relativeTo: this.route});
+}, 500);
+
     },err=>{
       console.log(err.error.message)
     })
