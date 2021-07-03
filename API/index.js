@@ -14,7 +14,7 @@ const uploadFile = require("../API/middleware/upload");
 //     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
 //     phone: 99181
 // };
-mongoose.connect('mongodb://localhost:27017/dashboard', { useNewUrlParser: true, useFindAndModify: false });
+mongoose.connect('mongodb://localhost:27017/dashboard', { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true });
 app.listen(port, () => {
 
     console.log("Server up and running listening at " + port);
