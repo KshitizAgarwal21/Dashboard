@@ -16,7 +16,7 @@ mat-drawer-content{
 }
 @media only screen and (max-width: 600px) {
     mat-drawer{
-        width: 120px;
+        width: 180px;
     }
     mat-drawer-content{
         padding: 10px;
