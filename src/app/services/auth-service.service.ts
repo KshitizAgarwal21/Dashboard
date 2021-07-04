@@ -7,32 +7,33 @@ import { TokenInterceptorService } from './token-interceptor.service';
 })
 export class AuthServiceService {
   constructor(private http: HttpClient, private interceptor: TokenInterceptorService) { }
-
+ devUrl = "http://localhost:8080/api/";
+ prodUrl = "http://localhost:4000/api/"
   login(data: any): Observable<any>
   {
-   return this.http.post('http://localhost:8080/api/login', data);
+   return this.http.post(this.prodUrl+`login`, data);
   }
   register(data: any): Observable<any>
   {
-    return this.http.post('http://localhost:8080/api/registeruser', data);
+    return this.http.post(this.prodUrl+ `registeruser`, data);
   }
 
   addusage(data: any): Observable<any>{
-    return this.http.post("http://localhost:8080/api/addusage", data);
+    return this.http.post( this.prodUrl+ `addusage`, data);
   }
 
   getData(): Observable<any>{
 
-    return this.http.get("http://localhost:8080/api/getdata");
+    return this.http.get( this.prodUrl+`getdata`);
   }
   getUsers(): Observable<any>{
 
-    return this.http.get('http://localhost:8080/api/getusers');
+    return this.http.get(this.prodUrl+`getusers`);
   }
 
   uploadFile(file:any): Observable<any>{
     const formData: FormData = new FormData();
     formData.append('file', file);
-    return this.http.post("http://localhost:8080/api/upload", formData);
+    return this.http.post(this.prodUrl+ `upload`, formData);
   }
   }
