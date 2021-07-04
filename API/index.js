@@ -113,7 +113,7 @@ app.get('/api/getdata', async (req, res) => {
 
     const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
     if (result == null) {
-        res.status(500).send({ msg: "No data available right now" });
+        res.status(400).send({ msg: "No data available right now" });
     }
     else {
         //Start of Code block=> Code to sort the result array according to days of week

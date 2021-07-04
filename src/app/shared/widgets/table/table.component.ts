@@ -35,7 +35,8 @@ if(localStorage.getItem('token')!=null){
       }
       this.dataSource= new MatTableDataSource<PeriodicElement>(temp);
       this.dataSource.paginator = this.paginator;
-    })
+    }, err=>{
+      console.log(err.error);})
 
   }
   else

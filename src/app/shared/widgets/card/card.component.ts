@@ -124,7 +124,8 @@ if(localStorage.getItem('token')!=null)
               },300)
         }
         
-    })
+    }, err=>{
+        console.log(err.error);})
 
   }
   else

@@ -121,6 +121,9 @@ if(localStorage.getItem('token')!=null)
               },300)
         }
         
+    }, err=>{
+        console.log(err.error);
+        alert("Please add usage data to view analysis");
     })
 
   }

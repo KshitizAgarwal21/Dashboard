@@ -116,7 +116,8 @@ chartOptions: any;
               }
             }
               
-          }) 
+          }, err=>{
+            console.log(err.error);}) 
   }
   else{
     this.chartOptions={
