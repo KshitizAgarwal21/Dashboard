@@ -6,7 +6,6 @@ const port = 4000 || process.env.port;
 const mongoose = require("mongoose");
 const REGISTER_SCHEMA = require('./Schema/register_schema');
 const USAGE_SCHEMA = require('../API/Schema/usageSchema');
-const { useSerialIds } = require("highcharts");
 app.use(cors());
 app.use(express.json());
 const uploadFile = require("../API/middleware/upload");
