@@ -8,7 +8,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 export class AuthServiceService {
   constructor(private http: HttpClient, private interceptor: TokenInterceptorService) { }
  devUrl = "http://localhost:8080/api/";
- prodUrl = "http://localhost:4000/api/"
+ prodUrl = "api/api/"
   login(data: any): Observable<any>
   {
    return this.http.post(this.prodUrl+`login`, data);
