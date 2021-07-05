@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+      - npm install -g @angular/cli
+    build:
+      commands:
+        - echo "Building angular project"
+        - ng build --prod
+    post build:
+      commands:
+        - echo "Updating files in S3 bucket..."
+        - aws s3 sync dist/Dashboard/ s3://DashboardAppBucket --delete
