@@ -5,10 +5,10 @@ const cors = require("cors");
 const port = 4000 || process.env.port;
 const mongoose = require("mongoose");
 const REGISTER_SCHEMA = require('./Schema/register_schema');
-const USAGE_SCHEMA = require('../API/Schema/usageSchema');
+const USAGE_SCHEMA = require('./Schema/usageSchema');
 app.use(cors());
 app.use(express.json());
-const uploadFile = require("../API/middleware/upload");
+const uploadFile = require("./middleware/upload");
 // var userData = {
 //     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
 //     phone: 99181
