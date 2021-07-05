@@ -7,11 +7,11 @@ phases:
       - echo "Installing dependencies..."
       - npm install
       - npm install -g @angular/cli
-    build:
-      commands:
-        - echo "Building angular project"
-        - ng build --prod
-    post build:
-      commands:
-        - echo "Updating files in S3 bucket..."
-        - aws s3 sync dist/Dashboard/ s3://DashboardAppBucket --delete
+  build:
+    commands:
+      - echo "Building angular project"
+      - ng build --prod
+  post build:
+    commands:
+      - echo "Updating files in S3 bucket..."
+      - aws s3 sync dist/Dashboard/ s3://dashboard-app-bucket --delete
