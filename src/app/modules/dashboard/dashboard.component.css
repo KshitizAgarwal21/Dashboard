@@ -2,9 +2,9 @@
 
 @media only screen  and(max-width: 600px)
 {
-    mat-card{
+    .bargraph{
         
-        
+        width: 400px;
        
     }
 }
