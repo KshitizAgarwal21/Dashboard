@@ -108,30 +108,35 @@ app.post('/api/addusage', async (req, res) => {
 })
 
 app.get('/api/getdata', async (req, res) => {
-    const user = jwt.verify(req.headers.authorization, "mysalt");
-
-    const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
-    if (result == null) {
-        res.status(400).send({ msg: "No data available right now" });
+    if (req.headers.authorization == null) {
+        res.status(400).send({ msg: "Unauthorised Request" });
     }
     else {
-        //Start of Code block=> Code to sort the result array according to days of week
-        const sorter = {
-            "monday": 1,
-            "tuesday": 2,
-            "wednesday": 3,
-            "thursday": 4,
-            "friday": 5,
-            "saturday": 6,
-            "sunday": 7
+        const user = jwt.verify(req.headers.authorization, "mysalt");
+
+        const result = await USAGE_SCHEMA.findOne({ uid: user.uid });
+        if (result == null) {
+            res.status(400).send({ msg: "No data available right now" });
         }
-        result.usage.sort(function sortByDay(a, b) {
-            let day1 = a.day.toLowerCase();
-            let day2 = b.day.toLowerCase();
-            return sorter[day1] - sorter[day2];
-        });
-        // End of code block
-        res.status(200).send({ result: result });
+        else {
+            //Start of Code block=> Code to sort the result array according to days of week
+            const sorter = {
+                "monday": 1,
+                "tuesday": 2,
+                "wednesday": 3,
+                "thursday": 4,
+                "friday": 5,
+                "saturday": 6,
+                "sunday": 7
+            }
+            result.usage.sort(function sortByDay(a, b) {
+                let day1 = a.day.toLowerCase();
+                let day2 = b.day.toLowerCase();
+                return sorter[day1] - sorter[day2];
+            });
+            // End of code block
+            res.status(200).send({ result: result });
+        }
     }
 })
 
