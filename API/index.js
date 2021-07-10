@@ -9,10 +9,7 @@ const USAGE_SCHEMA = require('./Schema/usageSchema');
 app.use(cors());
 app.use(express.json());
 const uploadFile = require("./middleware/upload");
-// var userData = {
-//     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtaWtlc3RhbkBoaWtlLmNvbSIsIm5hbWUiOiJNaWtlIFN0YW4iLCJpYXQiOjE1MTYyMzkwMjJ9.XSDPzJGG49vqVaXIOtxhL5EkSqbOn_jO3lW0mpE0WOE",
-//     phone: 99181
-// };
+
 const devURL = 'mongodb://localhost:27017/dashboard';
 const prodURL = "mongodb+srv://Kshitiz_Agarwal:FJ9EiIfKDWGb6nzS@cluster0.mkzhm.mongodb.net/Dashboard?retryWrites=true&w=majority";
 mongoose.connect(prodURL, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true });

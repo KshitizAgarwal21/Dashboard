@@ -13,15 +13,27 @@ let instagram: Array<number>=[];
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
+    date: Date=new Date();
+    fullDate = this.date.toUTCString().substr(0,17);
+    
+    weather:any;
 chartOptions: any;
 Highcharts =  Highcharts;
   constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
+
     days=[];
 whatsapp=[],
 instagram=[];
 youtube=[];
+this.authService.getWeather().subscribe(res=>{
+    let temp =res.main.temp;
+    temp=temp-273;
+    temp= temp.toString();
+    temp=temp.substr(0,5);
+    this.weather = res.name+" "+ temp+"°"+"Celcius";
+})
 if(localStorage.getItem('token')!=null)
 {
     this.authService.getData().subscribe(res=>{

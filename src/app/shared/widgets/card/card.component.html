@@ -1,5 +1,40 @@
-<highcharts-chart
+<!-- <highcharts-chart
   *ngIf="chartOptions"
   [Highcharts]="Highcharts"
   [options]="chartOptions"
-></highcharts-chart>
+></highcharts-chart> -->
+
+<mat-card
+  class="container"
+  fxLayout="column"
+  fxLayoutAlign="sapce-around center"
+>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="sapce-between center"
+    fxLayoutGap="10px"
+    fxFlex="50%"
+  >
+    <mat-card class="content"
+      ><h3 style="font-weight: 500">Today:</h3>
+      {{ fullDate }}</mat-card
+    >
+    <mat-card class="content">
+      <h3 style="font-weight: 500">Weather:</h3>
+      {{ weather }}
+    </mat-card>
+  </div>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="sapce-between center"
+    fxLayoutGap="10px"
+    fxFlex="50%"
+  >
+    <mat-card class="content"
+      ><img class="gif" src="../../../../assets/chart1.gif" />
+    </mat-card>
+    <mat-card class="content"
+      ><img class="social" src="../../../../assets/smc2.gif"
+    /></mat-card>
+  </div>
+</mat-card>

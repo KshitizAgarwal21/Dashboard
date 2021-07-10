@@ -1,9 +1,41 @@
 highcharts-chart{
     width: 100%; height: 450px; display: block;
 }
+.container{
+    height: 450px; 
+}
+.content{
+    text-align: center;
+    width: 200px;
+    height: 95px;
+}
+.gif{
+    width: 200px;
+    height: 100px;
+}
+.social{
+    width: 170px;
+    height: 100px;
+}
 @media only screen and (max-width:600px)
 {
     highcharts-chart{
         width: 100%; height: 300px; display: block;
+    }
+    .container{
+        height: 250px; 
+        width: 350px;
+    }
+    .content{
+        width: 100px;
+        height: 50px;
+    }
+    .gif{
+        width: 100px;
+        height: 60px;
+    }
+    .social{
+        width: 100px;
+        height: 60px;
     }
 }

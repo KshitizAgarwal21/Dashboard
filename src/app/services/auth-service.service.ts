@@ -30,7 +30,9 @@ export class AuthServiceService {
 
     return this.http.get(this.prodUrl+`getusers`);
   }
-
+  getWeather(): Observable<any>{
+    return this.http.get("https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=Delhi&appid=0d07d91901b63c4108a0c0f13f557dd8");
+  }
   uploadFile(file:any): Observable<any>{
     const formData: FormData = new FormData();
     formData.append('file', file);
